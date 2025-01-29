@@ -1,3 +1,3 @@
 # petsim
-CLI virtual pet simulator in Java
+CLI virtual pet simulator in Java.
 
