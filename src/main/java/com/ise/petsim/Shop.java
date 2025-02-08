@@ -1,12 +1,11 @@
 package com.ise.petsim;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.io.IOException;
+import java.io.InputStream;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class Shop {
     private final Inventory food;
@@ -17,23 +16,32 @@ public class Shop {
         this.accessories = new Inventory();
     }
 
-
-    public boolean loadInventory(String filepath, String inventoryType ) {
-        Inventory inventory = inventoryType.equalsIgnoreCase("food")? food : accessories;
-        return loadInventoryItems(filepath, inventory);
+    public boolean loadInventory(String filepath, String inventoryType) {
+        Inventory inventory = inventoryType.equalsIgnoreCase("food") ? this.food : this.accessories;
+        return this.loadInventoryItems(filepath, inventory);
     }
 
+    // @formatter:off
     private Item createFoodItem(JSONObject jsonItem) {
-        return new Food(jsonItem.getString("name"), jsonItem.getDouble("price"), jsonItem.getString("icon"), jsonItem.getInt("foodPoints"));
+        return new Food(
+            jsonItem.getString("name"),
+            jsonItem.getDouble("price"),
+            jsonItem.getString("icon"),
+            jsonItem.getInt("foodPoints")
+        );
     }
 
     private Item createAccessoryItem(JSONObject jsonItem) {
-        return new Accessory(jsonItem.getString("name"), jsonItem.getDouble("price"), jsonItem.getString("icon"));
+        return new Accessory(
+            jsonItem.getString("name"),
+            jsonItem.getDouble("price"),
+            jsonItem.getString("icon")
+        );
     }
+    // @formatter:on
 
     private boolean loadInventoryItems(String resourcePath, Inventory inventory) {
         try {
-            // Log the start of the inventory loading process
             System.out.println("Loading inventory from: " + resourcePath);
 
             // Retrieve the file from the classpath as an input stream
@@ -57,21 +65,20 @@ public class Shop {
             // Loop through each item in the JSON array and create the corresponding object
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonItem = jsonArray.getJSONObject(i);
-                Item item = isFoodInventory ? createFoodItem(jsonItem) : createAccessoryItem(jsonItem);
+                Item item =
+                        isFoodInventory ? createFoodItem(jsonItem) : createAccessoryItem(jsonItem);
                 inventory.addItem(item);
             }
 
             // Return true to indicate successful inventory loading
             return true;
-        } catch (Exception e) {
-            // Catch any exceptions that occur during file reading or JSON parsing
+        } catch (IOException | JSONException e) {
             System.err.println("Error loading inventory: " + e.getMessage());
         }
 
         // Return false if an error occurred
         return false;
     }
-
 
     public Inventory getFood() {
         return this.food;
