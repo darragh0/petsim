@@ -11,7 +11,6 @@ public abstract class Item {
         this.icon = icon;
     }
 
-
     public String getName() {
         return this.name;
     }
@@ -35,4 +34,5 @@ public abstract class Item {
     public void setIcon(String icon) {
         this.icon = icon;
     }
+
 }
