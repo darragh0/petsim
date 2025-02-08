@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Apple",
+    "price": 5,
+    "icon": "🍏",
+    "foodPoints": 10
+  },
+  {
+    "name": "Steak",
+    "price": 20,
+    "icon": "🥩",
+    "foodPoints": 40
+  },
+  {
+    "name": "Carrot",
+    "price": 4,
+    "icon": "🥕",
+    "foodPoints": 8
+  },
+  {
+    "name": "Bread",
+    "price": 8,
+    "icon": "🍞",
+    "foodPoints": 15
+  },
+  {
+    "name": "Fish",
+    "price": 15,
+    "icon": "🐟",
+    "foodPoints": 30
+  },
+  {
+    "name": "Cheese",
+    "price": 10,
+    "icon": "🧀",
+    "foodPoints": 20
+  },
+  {
+    "name": "Milk",
+    "price": 6,
+    "icon": "🥛",
+    "foodPoints": 12
+  },
+  {
+    "name": "Honey",
+    "price": 12,
+    "icon": "🍯",
+    "foodPoints": 25
+  }
+]

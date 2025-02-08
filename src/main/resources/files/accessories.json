@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Collar",
+    "price": 15,
+    "icon": "📿"
+  },
+  {
+    "name": "Hat",
+    "price": 10,
+    "icon": "🎩"
+  },
+  {
+    "name": "Sunglasses",
+    "price": 12,
+    "icon": "🕶️"
+  },
+  {
+    "name": "Bowtie",
+    "price": 8,
+    "icon": "🎀"
+  },
+  {
+    "name": "Scarf",
+    "price": 14,
+    "icon": "🧣"
+  },
+  {
+    "name": "Shoes",
+    "price": 20,
+    "icon": "👟"
+  },
+  {
+    "name": "Backpack",
+    "price": 18,
+    "icon": "🎒"
+  },
+  {
+    "name": "Crown",
+    "price": 25,
+    "icon": "👑"
+  }
+]
