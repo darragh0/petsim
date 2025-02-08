@@ -1,17 +1,19 @@
 package com.ise.petsim;
 
 public class Food extends Item {
-    private int FoodPoints;
+    private int foodPoints;
 
-    public Food() {
-        super();
+    public Food(String name, double price, String icon, int foodPoints) {
+        super(name, price, icon);
+        this.foodPoints = foodPoints;
     }
 
+
     public int getFoodPoints() {
-        return FoodPoints;
+        return this.foodPoints;
     }
 
     public void setFoodPoints(int foodPoints) {
-        FoodPoints = foodPoints;
+        this.foodPoints = foodPoints;
     }
 }

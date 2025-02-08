@@ -23,25 +23,13 @@ public class Shop {
         return loadInventoryItems(filepath, inventory);
     }
 
-    private void populateCommonItemFields(Item item, JSONObject jsonItem){
-        item.setName(jsonItem.getString("name"));
-        item.setPrice(jsonItem.getDouble("price"));
-        item.setIcon(jsonItem.getString("icon"));
-    }
-
     private Item createFoodItem(JSONObject jsonItem) {
-        Food foodItem = new Food();
-        populateCommonItemFields(foodItem, jsonItem);
-        foodItem.setFoodPoints(jsonItem.getInt("foodPoints"));
-        return foodItem;
+        return new Food(jsonItem.getString("name"), jsonItem.getDouble("price"), jsonItem.getString("icon"), jsonItem.getInt("foodPoints"));
     }
 
     private Item createAccessoryItem(JSONObject jsonItem) {
-        Accessory accessoryItem = new Accessory();
-       populateCommonItemFields(accessoryItem, jsonItem);
-        return accessoryItem;
+        return new Accessory(jsonItem.getString("name"), jsonItem.getDouble("price"), jsonItem.getString("icon"));
     }
-
 
     private boolean loadInventoryItems(String resourcePath, Inventory inventory) {
         try {
@@ -86,11 +74,11 @@ public class Shop {
 
 
     public Inventory getFood() {
-        return food;
+        return this.food;
     }
 
     public Inventory getAccessories() {
-        return accessories;
+        return this.accessories;
     }
 
 }

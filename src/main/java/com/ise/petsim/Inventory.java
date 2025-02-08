@@ -11,16 +11,16 @@ public class Inventory {
 
     public Item getItem(int index){
         if (index >= 0 && index < inventory.size()){
-            return inventory.get(index);
+            return this.inventory.get(index);
         }
         return null;
     }
 
     public void addItem(Item item){
-        inventory.add(item);
+        this.inventory.add(item);
     }
 
     public ArrayList<Item> getItems(){
-        return inventory;
+        return this.inventory;
     }
 }

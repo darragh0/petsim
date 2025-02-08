@@ -5,15 +5,15 @@ public abstract class Item {
     private double price;
     private String icon;
 
-    public Item() {
-        this.name = "";
-        this.price = 0;
-        this.icon = "";
+    public Item(String name, double price, String icon) {
+        this.name = name;
+        this.price = price;
+        this.icon = icon;
     }
 
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -21,7 +21,7 @@ public abstract class Item {
     }
 
     public double getPrice() {
-        return price;
+        return this.price;
     }
 
     public void setPrice(double price) {
@@ -29,7 +29,7 @@ public abstract class Item {
     }
 
     public String getIcon() {
-        return icon;
+        return this.icon;
     }
 
     public void setIcon(String icon) {
