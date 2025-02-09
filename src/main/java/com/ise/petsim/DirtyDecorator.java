@@ -1,7 +1,20 @@
 package com.ise.petsim;
 
-public class DirtyDecorator extends AnimalDecorator {
+class DirtyDecorator extends AnimalDecorator {
     public DirtyDecorator(Animal decoratedAnimal) {
         super(decoratedAnimal);
+    }
+    
+    @Override
+    public void makeSound() {
+        decoratedAnimal.makeSound();
+    }
+    
+    @Override
+    public void bathe() {
+    }
+    
+    @Override
+    public void getHungry() {
     }
 }

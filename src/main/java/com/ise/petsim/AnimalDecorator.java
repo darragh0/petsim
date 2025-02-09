@@ -1,10 +1,10 @@
 package com.ise.petsim;
 
-abstract class AnimalDecorator implements Animal {
+abstract class AnimalDecorator extends Animal {
     protected Animal decoratedAnimal;
 
     public AnimalDecorator(Animal decoratedAnimal) {
+        super();
         this.decoratedAnimal = decoratedAnimal;
     }
-    
 }
