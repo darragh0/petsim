@@ -1,9 +1,10 @@
 package com.ise.petsim;
 
+
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Hello, World!");
+        SimManager.run();
     }
 
 }

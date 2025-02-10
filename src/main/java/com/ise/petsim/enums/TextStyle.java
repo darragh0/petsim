@@ -1,18 +1,17 @@
 package com.ise.petsim.enums;
 
 
-public enum Color {
-    RED("\033[91m"),
-    GREEN("\033[92m"),
-    YELLOW("\033[93m"),
-    BLUE("\033[94m"),
-    MAGENTA("\033[95m"),
-    CYAN("\033[96m"),
+public enum TextStyle {
+    BOLD("\033[1m"),
+    ITALIC("\033[3m"),
+    UNDERLINE("\033[4m"),
+    REVERSED("\033[7m"),
+    STRIKETHROUGH("\033[9m"),
     NONE("\033[0;0m");
 
     private final String value;
 
-    Color(String value) {
+    TextStyle(String value) {
         this.value = value;
     }
 
@@ -20,13 +19,13 @@ public enum Color {
         return this.value;
     }
 
-    public static Color from(char ch) {
-        for (Color style : Color.values()) {
+    public static TextStyle from(char ch) {
+        for (TextStyle style : TextStyle.values()) {
             if (style.toString().charAt(0) == Character.toUpperCase(ch)) {
                 return style;
             }
         }
-        return Color.NONE;
+        return TextStyle.NONE;
     }
 
 }
