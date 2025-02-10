@@ -9,7 +9,7 @@ public class Goldfish extends WaterAnimal {
     public void train() {
         System.out.println(this.getName() + " is trained to swim through hoops.");
     }
-
+    
     @Override
     public void swim() {
         System.out.println(this.getName() + " is swimming gracefully.");

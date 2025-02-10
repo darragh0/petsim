@@ -14,7 +14,7 @@ public class Jellyfish extends WaterAnimal {
     public void swim() {
         System.out.println(this.getName() + " is pulsing through the water.");
     }
-
+    
     @Override
     public void makeSound() {
         System.out.println("Gloop gloop");
