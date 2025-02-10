@@ -18,7 +18,7 @@ public class StatusBar implements Observer, Displayable {
     @Override
     public void display() {
         // Display the status bar
-        System.out.println("StatusBar: " + name + " Value: " + value + "/" + maxValue);
+        System.out.println("StatusBar: " + this.name + " Value: " + this.value + "/" + this.maxValue);
     }
 
     // code for a cool status bar that's moving in cli to be implemented later, would have % on the right
