@@ -1,4 +1,4 @@
-package com.ise.petsim;
+package com.ise.petsim.manager;
 
 
 import com.ise.petsim.menu.MainMenu;

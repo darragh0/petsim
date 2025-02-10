@@ -1,8 +1,8 @@
 package com.ise.petsim.menu;
 
 
-import com.ise.petsim.AuthManager;
-import com.ise.petsim.SimManager;
+import com.ise.petsim.manager.AuthManager;
+import com.ise.petsim.manager.SimManager;
 import com.ise.petsim.menu.abs.Menu;
 
 
