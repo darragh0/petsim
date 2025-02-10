@@ -1,27 +1,37 @@
 package com.ise.petsim;
 
+
 import java.util.ArrayList;
 import java.util.Optional;
 
-public class Inventory {
-    ArrayList<Item> inventory;
+import com.ise.petsim.item.abs.Item;
+
+
+public class Inventory<T extends Item> {
+
+    ArrayList<T> items;
 
     public Inventory() {
-        this.inventory = new ArrayList<>();
+        this.items = new ArrayList<>();
     }
 
-    public Optional<Item> getItem(int index) {
-        if (index >= 0 && index < this.inventory.size()) {
-            return Optional.ofNullable(this.inventory.get(index));
+    public Optional<T> getItem(int index) {
+        if (index >= 0 && index < this.items.size()) {
+            return Optional.ofNullable(this.items.get(index));
         }
         return Optional.empty();
     }
 
-    public void addItem(Item item) {
-        this.inventory.add(item);
+    public void addItem(T item) {
+        this.items.add(item);
     }
 
-    public ArrayList<Item> getItems() {
-        return this.inventory;
+    public void extendInventory(Inventory<T> inv) {
+        this.items.addAll(inv.items);
     }
+
+    public ArrayList<T> getItems() {
+        return this.items;
+    }
+
 }
