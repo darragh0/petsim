@@ -1,7 +1,7 @@
 package com.ise.petsim;
 
 
-import static com.ise.petsim.util.IO.println;
+import static com.ise.petsim.util.io.ConsoleIO.println;
 
 
 public final class AuthManager {

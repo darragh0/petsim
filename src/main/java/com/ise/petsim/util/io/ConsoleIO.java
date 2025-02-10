@@ -1,4 +1,4 @@
-package com.ise.petsim.util;
+package com.ise.petsim.util.io;
 
 
 import java.util.Scanner;
@@ -8,9 +8,9 @@ import com.ise.petsim.enm.Color;
 import com.ise.petsim.enm.TextStyle;
 
 
-public final class IO {
+public final class ConsoleIO {
 
-    private IO() {
+    private ConsoleIO() {
         throw new UnsupportedOperationException("This class cannot be instantiated.");
     }
 

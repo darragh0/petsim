@@ -6,8 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.ise.petsim.util.IO.intInput;
-import static com.ise.petsim.util.IO.println;
+import static com.ise.petsim.util.io.ConsoleIO.intInput;
+import static com.ise.petsim.util.io.ConsoleIO.println;
 
 
 public abstract class Menu {

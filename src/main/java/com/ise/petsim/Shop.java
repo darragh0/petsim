@@ -4,89 +4,55 @@ package com.ise.petsim;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.ise.petsim.enm.Size;
 import com.ise.petsim.item.Accessory;
 import com.ise.petsim.item.Food;
-import com.ise.petsim.item.abs.Item;
+import static com.ise.petsim.util.io.ConsoleIO.printErr;
+import static com.ise.petsim.util.io.FileIO.loadAccessoryInventory;
+import static com.ise.petsim.util.io.FileIO.loadFoodInventory;
 
 
 public class Shop {
 
-    private final Inventory food;
-    private final Inventory accessories;
+    private final Inventory<Food> food;
+    private final Inventory<Accessory> accessories;
 
     public Shop() {
-        this.food = new Inventory();
-        this.accessories = new Inventory();
+        this.food = new Inventory<>();
+        this.accessories = new Inventory<>();
+        this.loadInventoryItems("json/shop_items.json");
     }
 
-    public boolean loadInventory(String filepath, String inventoryType) {
-        Inventory inventory = inventoryType.equalsIgnoreCase("food") ? this.food : this.accessories;
-        return this.loadInventoryItems(filepath, inventory);
-    }
-
-    // @formatter:off
-    private Item createFoodItem(JSONObject jsonItem) {
-        return new Food(
-            jsonItem.getString("name"),
-            jsonItem.getDouble("price"),
-            jsonItem.getString("icon"),
-            jsonItem.getInt("foodPoints")
-        );
-    }
-
-    private Item createAccessoryItem(JSONObject jsonItem) {
-        return new Accessory(
-            jsonItem.getString("name"),
-            jsonItem.getDouble("price"),
-            jsonItem.getString("icon"),
-            getSizeEnum(jsonItem.getString("size"))
-        );
-    }
-    private Size getSizeEnum(String size) {
+    private boolean loadInventoryItems(String path) {
         try {
-            return Size.valueOf(size.toUpperCase());
-        } catch (IllegalArgumentException e) {
-            return Size.MEDIUM;
-        }
-    }
-    // @formatter:on
-
-    private boolean loadInventoryItems(String resourcePath, Inventory inventory) {
-        try {
-            System.out.println("Loading inventory from: " + resourcePath);
+            System.out.println("Loading inventory from: " + path);
 
             // Retrieve the file from the classpath as an input stream
-            InputStream inputStream = getClass().getClassLoader().getResourceAsStream(resourcePath);
+            InputStream inputStream = getClass().getClassLoader().getResourceAsStream(path);
 
-            // Check if the file was found; if not, print an error message and return false
             if (inputStream == null) {
-                System.err.println("File not found: " + resourcePath);
+                printErr("File not found: %s", path);
                 return false;
             }
 
-            // Read the entire file into a string
             String jsonText = new String(inputStream.readAllBytes());
+            JSONObject shopItems = new JSONObject(jsonText);
 
-            // Parse the string into a JSON array
-            JSONArray jsonArray = new JSONArray(jsonText);
-
-            // Determine the item type based on the file path
-            boolean isFoodInventory = resourcePath.contains("Food");
-
-            // Loop through each item in the JSON array and create the corresponding object
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonItem = jsonArray.getJSONObject(i);
-                Item item =
-                    isFoodInventory ? createFoodItem(jsonItem) : createAccessoryItem(jsonItem);
-                inventory.addItem(item);
+            final String[] keys = { "food", "accessories" };
+            for (String key : keys) {
+                if (!shopItems.has(key)) {
+                    printErr("Invalid JSON or missing key (in %s): %s", path, key);
+                    return false;
+                }
             }
 
-            // Return true to indicate successful inventory loading
+            this.food.extendInventory(
+                loadFoodInventory(shopItems.getJSONArray("food")));
+            this.accessories.extendInventory(
+                loadAccessoryInventory(shopItems.getJSONArray("accessories")));
+
             return true;
         } catch (IOException | JSONException e) {
             System.err.println("Error loading inventory: " + e.getMessage());
@@ -96,11 +62,11 @@ public class Shop {
         return false;
     }
 
-    public Inventory getFood() {
+    public Inventory<Food> getFood() {
         return this.food;
     }
 
-    public Inventory getAccessories() {
+    public Inventory<Accessory> getAccessories() {
         return this.accessories;
     }
 
