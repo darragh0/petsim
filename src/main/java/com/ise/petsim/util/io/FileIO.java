@@ -1,6 +1,9 @@
 package com.ise.petsim.util.io;
 
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Optional;
 import java.util.function.Function;
 
 import org.json.JSONArray;
@@ -11,12 +14,35 @@ import com.ise.petsim.enm.Size;
 import com.ise.petsim.item.Accessory;
 import com.ise.petsim.item.Food;
 import com.ise.petsim.item.abs.Item;
+import static com.ise.petsim.util.io.ConsoleIO.printErr;
 
 
 public final class FileIO {
 
     private FileIO() {
         throw new UnsupportedOperationException("This is a utility class and cannot be instantiated.");
+    }
+
+    public static Optional<InputStream> getResourceAsStream(String path) {
+        return Optional.ofNullable(FileIO.class.getClassLoader().getResourceAsStream(path));
+    }
+
+    public static Optional<JSONObject> loadJsonResource(String path) {
+        Optional<InputStream> inputStream = getResourceAsStream(path);
+
+        if (inputStream.isEmpty()) {
+            printErr("File not found: %s", path);
+            return Optional.empty();
+        }
+
+        try {
+            String txt = new String(inputStream.get().readAllBytes());
+            JSONObject json = new JSONObject(txt);
+            return Optional.ofNullable(json);
+        } catch (IOException e) {
+            printErr("Failed to read file: %s", path);
+            return Optional.empty();
+        }
     }
 
     public static Inventory<Food> loadFoodInventory(JSONArray jsonArr) {
