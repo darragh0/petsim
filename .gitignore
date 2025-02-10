@@ -1,3 +1,8 @@
+# Folders
 .mvn/
+.idea/
+.vscode/
 target/
+
+# Files
 *.xml
