@@ -9,7 +9,7 @@ import com.ise.petsim.enums.Size;
  * Abstract base class for all animals in the pet simulation.
  * Implements basic animal behaviors and stats management.
  */
-public abstract class Animal {
+public abstract class Animal extends Observable {  // observer pattern to be implemented because I forgot what it depends on 
     private static final double ENERGY_REDUCTION_RATE = 13.0;
     private static final double CLEANLINESS_REDUCTION_RATE = 14.0;
     private static final double ENERGY_INCREASE_RATE = 15.0;
@@ -30,6 +30,8 @@ public abstract class Animal {
         this.energy = (int) (this.size.getMaxEnergy() / INITIAL_RATIO);
         this.cleanliness = (int) (this.size.getMaxCleanliness() / INITIAL_RATIO);
     }
+
+   
 
     public abstract void makeSound();
 
