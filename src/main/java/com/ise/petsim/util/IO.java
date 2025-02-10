@@ -4,8 +4,8 @@ package com.ise.petsim.util;
 import java.util.Scanner;
 import java.util.Stack;
 
-import com.ise.petsim.enums.Color;
-import com.ise.petsim.enums.TextStyle;
+import com.ise.petsim.enm.Color;
+import com.ise.petsim.enm.TextStyle;
 
 
 public final class IO {

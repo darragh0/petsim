@@ -1,5 +1,10 @@
 package com.ise.petsim;
 
+
+import com.ise.petsim.animal.abs.Animal;
+import com.ise.petsim.trait.Displayable;
+
+
 public class StatusBar implements Observer, Displayable {
 
     private String name;
@@ -23,11 +28,11 @@ public class StatusBar implements Observer, Displayable {
 
     // code for a cool status bar that's moving in cli to be implemented later, would have % on the right
     public static void displayStatusBar(int value, int maxValue) {
-        int barLength = 50; //can be whatever we'll see later
+        int barLength = 50; // can be whatever we'll see later
         int filledLength = (int) (barLength * ((double) value / maxValue));
 
         StringBuilder bar = new StringBuilder();
-        bar.append("\r["); 
+        bar.append("\r[");
         for (int i = 0; i < barLength; i++) {
             if (i < filledLength) {
                 bar.append("=");

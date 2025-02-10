@@ -1,4 +1,8 @@
-package com.ise.petsim; 
+package com.ise.petsim;
+
+
 public interface Observer {
+
     void update();
+
 }
