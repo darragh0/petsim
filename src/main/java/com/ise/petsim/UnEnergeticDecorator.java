@@ -4,14 +4,14 @@ public class UnEnergeticDecorator extends AnimalDecorator {
     public UnEnergeticDecorator(Animal decoratedAnimal) {
         super(decoratedAnimal);
     }
+
     @Override
-    public void makeSound() {
-        decoratedAnimal.makeSound();
+    public int energyIncrease() {
+        return super.energyIncrease() + 5;
     }
+
     @Override
-    public void sleep() {
-    }
-    @Override
-    public void getHungry() {
+    public int energyDecrease() {
+        return super.energyDecrease() - 2; 
     }
 }
