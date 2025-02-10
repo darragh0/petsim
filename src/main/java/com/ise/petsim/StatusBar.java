@@ -1,6 +1,6 @@
 package com.ise.petsim;
 
-public class StatusBar implements Observer, DisplayElement {
+public class StatusBar implements Observer, Displayable {
 
     private String name;
     private int value;

@@ -1,6 +1,6 @@
 package com.ise.petsim;
 
-public interface DisplayElement {
+public interface Displayable {
     void display();
     
 }
