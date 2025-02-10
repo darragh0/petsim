@@ -1,9 +1,11 @@
 package com.ise.petsim;
 
+
 import java.util.concurrent.TimeUnit;
 
 import com.ise.petsim.enums.Color;
 import com.ise.petsim.enums.Size;
+
 
 /**
  * Abstract base class for all animals in the pet simulation.
@@ -24,7 +26,7 @@ public abstract class Animal {
 
     public Animal() {
         // start stat bars below max to allow performing functionalities
-        this.color = Color.RESET;
+        this.color = Color.NONE;
         this.size = Size.MEDIUM;
         this.name = "pet";
         this.energy = (int) (this.size.getMaxEnergy() / INITIAL_RATIO);
@@ -121,9 +123,9 @@ public abstract class Animal {
     public void reduceCleanliness() {
         // Reduce by 14% of max cleanliness
         int cleanlinessReduction =
-                (int) Math.ceil(this.getMaxCleanliness() / CLEANLINESS_REDUCTION_RATE);
+            (int) Math.ceil(this.getMaxCleanliness() / CLEANLINESS_REDUCTION_RATE);
         this.cleanliness =
-                Math.max(0, this.cleanliness - cleanlinessReduction - this.cleanlinessDecrease());
+            Math.max(0, this.cleanliness - cleanlinessReduction - this.cleanlinessDecrease());
     }
 
     public String getName() {

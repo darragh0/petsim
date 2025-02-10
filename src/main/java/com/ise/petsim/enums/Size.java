@@ -1,7 +1,8 @@
 package com.ise.petsim.enums;
 
+
 public enum Size {
-    // the values are the max values assigned to each animal depending on their size
+    // The values are the max values assigned to each animal depending on their size
     SMALL(100, 100),
     MEDIUM(125, 110),
     LARGE(150, 120);
