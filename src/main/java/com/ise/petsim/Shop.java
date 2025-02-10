@@ -3,6 +3,7 @@ package com.ise.petsim;
 import java.io.IOException;
 import java.io.InputStream;
 
+import com.ise.petsim.enums.Size;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,8 +36,16 @@ public class Shop {
         return new Accessory(
             jsonItem.getString("name"),
             jsonItem.getDouble("price"),
-            jsonItem.getString("icon")
+            jsonItem.getString("icon"),
+            getSizeEnum(jsonItem.getString("size"))
         );
+    }
+    private Size getSizeEnum(String size) {
+        try {
+            return Size.valueOf(size.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            return Size.MEDIUM;
+        }
     }
     // @formatter:on
 
